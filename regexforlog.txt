@@ -1,0 +1,14 @@
+LOG_PATTERN = r'^(\S+) (\S+) (\S+) \[([\w:/]+\s[+\-]\d{4})\] "(\S+)\s?(\S+)?\s?(\S+)?" (\d{3}|-) (\d+|-)\s?"?([^"]*)"?\s?"?([^"]*)?"?$'
+logLine = '11.11.11.11 - - [25/Jan/2000:14:00:01 +0100] "GET /1986.js HTTP/1.1" 200 932 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6"'
+match = re.search(LOG_PATTERN, logLine)
+host          = match.group(1)
+client_identd = match.group(2)
+user_id       = match.group(3)
+date_time     = match.group(4)
+method        = match.group(5)
+endpoint      = match.group(6)
+protocol      = match.group(7)
+response_code = int(match.group(8))
+content_size  = match.group(9)
+referer 	  = match.group(10)
+userAgent 	  = match.group(11)
